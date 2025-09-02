@@ -336,29 +336,53 @@ function addThemeToggle() {
 
 function toggleTheme() {
     const root = document.documentElement;
+    const body = document.body;
     const isDark = root.style.getPropertyValue('--primary-bg') !== '#ffffff';
     
     if (isDark) {
-        // Light theme
+        // Light theme - 하양-보라 조합
         root.style.setProperty('--primary-bg', '#ffffff');
         root.style.setProperty('--secondary-bg', '#f8f9fa');
         root.style.setProperty('--text-primary', '#333333');
         root.style.setProperty('--text-secondary', '#666666');
-        root.style.setProperty('--card-bg', 'rgba(0, 0, 0, 0.05)');
-        root.style.setProperty('--border-color', 'rgba(0, 0, 0, 0.1)');
+        root.style.setProperty('--accent-color', '#8b5cf6'); // 보라색
+        root.style.setProperty('--accent-secondary', '#a855f7'); // 보조 보라색
+        root.style.setProperty('--card-bg', 'rgba(139, 92, 246, 0.05)'); // 보라색 배경
+        root.style.setProperty('--border-color', 'rgba(139, 92, 246, 0.1)'); // 보라색 테두리
+        root.style.setProperty('--gradient', 'linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)'); // 보라색 그라데이션
+        body.setAttribute('data-theme', 'light');
+        
+        // 테마 토글 버튼 아이콘 변경
+        const themeToggle = document.querySelector('button[style*="fixed"]');
+        if (themeToggle) {
+            themeToggle.innerHTML = '☀️';
+        }
     } else {
-        // Dark theme (default)
+        // Dark theme (default) - 검정-녹색 조합
         root.style.setProperty('--primary-bg', '#0a0a0a');
         root.style.setProperty('--secondary-bg', '#1a1a1a');
         root.style.setProperty('--text-primary', '#ffffff');
         root.style.setProperty('--text-secondary', '#a0a0a0');
+        root.style.setProperty('--accent-color', '#00ff88'); // 녹색
+        root.style.setProperty('--accent-secondary', '#ff6b6b'); // 보조 색상
         root.style.setProperty('--card-bg', 'rgba(255, 255, 255, 0.05)');
         root.style.setProperty('--border-color', 'rgba(255, 255, 255, 0.1)');
+        root.style.setProperty('--gradient', 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)');
+        body.setAttribute('data-theme', 'dark');
+        
+        // 테마 토글 버튼 아이콘 변경
+        const themeToggle = document.querySelector('button[style*="fixed"]');
+        if (themeToggle) {
+            themeToggle.innerHTML = '🌙';
+        }
     }
 }
 
 // Initialize theme toggle
 addThemeToggle();
+
+// Set initial theme to dark
+document.body.setAttribute('data-theme', 'dark');
 
 // Add performance monitoring
 if ('performance' in window) {

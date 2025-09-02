@@ -431,6 +431,16 @@ nav.scrolled {
     background: rgba(0, 255, 136, 0.15);
 }
 
+/* 라이트 모드에서 tech-tag 스타일을 동적으로 업데이트하기 위한 클래스 */
+[data-theme="light"] .tech-tag {
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+[data-theme="light"] .tech-tag:hover {
+    background: rgba(139, 92, 246, 0.15);
+}
+
 .card-links {
     display: flex;
     gap: 1rem;
